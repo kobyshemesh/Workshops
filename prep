@@ -2,3 +2,8 @@ Preparations:
 login to the linux machine, and perform the following:
 yum install -y docker
 yum install -y git
+
+
+git clone https://github.com/prakhar1989/FoodTrucks
+
+
