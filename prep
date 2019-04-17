@@ -11,5 +11,15 @@ docker pull docker.elastic.co/elasticsearch/elasticsearch:6.3.2
 
 docker images
 
+#Install Docker compose on the liunux Machine
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+docker-compose up -d
+docker-compose ps
+docker-compose stop
+docker-compose down
+docker-compose down --volumes
 
 
