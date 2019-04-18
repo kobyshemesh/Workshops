@@ -84,3 +84,19 @@ kubectl expose deployment frontend --type=LoadBalancer --namespace=workshop
 kubectl get service frontend
 kubectl scale deployment frontend --replicas=5
 kubectl get pods
+
+
+**working with storage**
+https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/#visit-your-new-wordpress-blog
+
+kubectl get StorageClass
+
+kubectl create secret generic mysql-pass --from-literal=password=password
+kubectl get secrets
+
+The following manifest describes a single-instance MySQL Deployment. The MySQL container mounts the PersistentVolume at /var/lib/mysql. The MYSQL_ROOT_PASSWORD environment variable sets the database password from the Secret.
+
+kubectl create -f mysql-deployment.yaml
+kubectl get pods
+kubectl create -f wordpress-deployment.yaml
+kubectl get pvc
