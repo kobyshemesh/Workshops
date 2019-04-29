@@ -6,14 +6,15 @@ It is used to perform PKS workshops.
 make sure you have pksapi, kubectl and docker installed.
 
 **vi env.sh**
-
-PKS_API_URL=https://api.pks.livingston.cf-app.com
+**i have used GCP, you can condigure it what ever env you want**
+PKS_API_URL=https://api.pks.XXX.com
 GCP_REGION=europe-west1
-PKS_CLI_USERNAME=kobi
-GCP_PROJECT=pa-kshamama
-PKS_CLI_PASSWORD=TBD
-CLUSTER_NAME=workshop
-PREFIX=livingston
+PKS_CLI_USERNAME=XXX
+GCP_PROJECT=XXX
+PKS_CLI_PASSWORD=XXX
+CLUSTER_NAME=XXX
+PREFIX=XXX
+**Keep the file**
 source env.sh
 
 pks login -k -a ${PKS_API_URL} -u ${PKS_CLI_USERNAME} -p ${PKS_CLI_PASSWORD} --skip-ssl-validation
@@ -37,39 +38,16 @@ pks resize ${CLUSTER_NAME} --num-nodes 4
 bosh -e pks vms
 bosh -e pks tasks
 bosh -e pks  task
-bosh -e pks ssh -d service-instance_bd8ce083-9b4d-41e5-b76c-627f07b49443 master/8b65ee5a-7b59-4de9-b886-f9025fcebeb5
+bosh -e pks ssh -d service-instance_XXX master/XXX
 etcdctl cluster-health
 etcdctl member list
 **from the master node:**
   monit summary
 
 **pull docker images from remote repo**
-mkdir /etc/docker/certs.d/harbor.livingston.cf-app.com
-cd /etc/docker/certs.d/harbor.livingston.cf-app.com
+mkdir /etc/docker/certs.d/harbor.XXX.com
+cd /etc/docker/certs.d/harbor.XXX.com
 vim ca.crt
-**copy paste**
------BEGIN CERTIFICATE-----
-MIIDUTCCAjmgAwIBAgIVAMeZe40FBlLJovyOrrG2JVhSCPW8MA0GCSqGSIb3DQEB
-CwUAMB8xCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdQaXZvdGFsMB4XDTE5MDQwNTE4
-MTQzMVoXDTIzMDQwNjE4MTQzMVowHzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1Bp
-dm90YWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMZtC9OdVnSlPa
-FmlT0J6WIfGUG+cCgjehWbY6Azm7d/3Q36HhtcWAxsR8+R1cBFSxM75AyyCQeIKm
-2WFiLKVrie+X2299r0boxOhCqOfxQPrEb5p4CaV0bHwqG9v7FVbYChuYPOnqp649
-kb9d7TIkzYsvXCzjIh0Nn8gFEUYIuWsxz0/1YkZv87ha8CP8dei0pMyECdTBpX4/
-r31QCD7YDRL9Wbmq5rZQIjrZ+4RYw/wpgbQkLx437R+ZkBNgiEqMbniUllLjk3ib
-2sh4AvOp0TqkJGSq/9PfmfIyF2IIVsT/+xyGrhw/xJqs6xVvYInQ83iIUtrqFX99
-z1+oAHsVAgMBAAGjgYMwgYAwHQYDVR0OBBYEFItd2xGLuWsfKZa7bG0MWfxuCuFJ
-MB8GA1UdIwQYMBaAFItd2xGLuWsfKZa7bG0MWfxuCuFJMB0GA1UdJQQWMBQGCCsG
-AQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIB
-BjANBgkqhkiG9w0BAQsFAAOCAQEAgZoyplix47WBmTYTiqv7ztS2DpuX8lGTGojY
-Q7MqkZw1a1IYwU2kYClDhaZWrAMamPPJEaEwG/0/t4Ix7bM54C8yLmzBXET4tgB8
-l+8wIWpqRcRYZLdq0IxtDcNkmpgr57wMkVw8mWxzupO8btjrx4LG0nxJEJtFzRSQ
-WxNjOAtJt4jNYhSmi97RX4wgO3fUz3mrFak3RLrGBn9Q0w3ieAAcTOj9wDP+7ayT
-qSn1jZ1OvPG3Lzi/68TFeZufG+fVMP0exP/xq5s5mz/Uk6hIUPFWcWrded6+Oe2u
-4xGKG2OLGmA7pAwx78VtzhL1khXZtgI170p4k+dNdanL8qzugQ==
------END CERTIFICATE-----
-
-
 
 
 docker pull k8s.gcr.io/redis:e2e
